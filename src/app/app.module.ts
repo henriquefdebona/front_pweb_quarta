@@ -1,12 +1,21 @@
+import { CategoriasCadastroComponent } from './categorias/categorias-cadastro/categorias-cadastro.component';
+import { CategoriasPesquisaComponent } from './categorias/categorias-pesquisa/categorias-pesquisa.component';
+import { CategoriasModule } from './categorias/categorias.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { ConfirmationService } from 'primeng/api';
 
-import {InputTextModule} from 'primeng/inputtext';
-import {ButtonModule} from 'primeng/button';
-import {TableModule} from 'primeng/table';
-import {TooltipModule} from 'primeng/tooltip';
+import {Routes, RouterModule} from '@angular/router';
+
+const rotas: Routes = [
+  {path: 'categorias', component: CategoriasPesquisaComponent},
+  {path: 'categorias/novo', component: CategoriasCadastroComponent},
+  {path: 'categorias/:id', component: CategoriasCadastroComponent}
+];
 
 @NgModule({
   declarations: [
@@ -14,12 +23,14 @@ import {TooltipModule} from 'primeng/tooltip';
   ],
   imports: [
     BrowserModule,
-    InputTextModule,
-    ButtonModule,
-    TableModule,
-    TooltipModule
+    BrowserAnimationsModule,
+    CategoriasModule,
+    HttpClientModule,
+    RouterModule.forRoot(rotas)
   ],
-  providers: [],
+  providers: [
+    ConfirmationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
