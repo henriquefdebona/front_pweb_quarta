@@ -11,7 +11,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 export class EstadosCadastroComponent implements OnInit {
 
-  categoria = new Estado();
+  estado = new Estado();
 
   constructor(
     private service: EstadosService,
@@ -19,9 +19,9 @@ export class EstadosCadastroComponent implements OnInit {
   ) { }
 
   inserir(form: FormControl) {
-    this.service.adicionar(this.categoria)
+    this.service.adicionar(this.estado)
     .then( ()=>{
-      this.messageService.add({severity:'success', summary:'Cadastro', detail:'Estado '+this.categoria.nome+' cadastrado!'});
+      this.messageService.add({severity:'success', summary:'Cadastro', detail:'Estado '+this.estado.nome+' cadastrado!'});
       form.reset();
     });
   }
