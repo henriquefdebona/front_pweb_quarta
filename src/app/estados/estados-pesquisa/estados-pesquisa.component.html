@@ -1,0 +1,71 @@
+<p-toast></p-toast>
+<p-confirmDialog header="Confirmação" icon="pi pi-question-circle" acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
+
+<div class="container">
+<form autocomplete="off" (ngSubmit)="pesquisar()">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>
+          Estados
+        </h1>
+      </div>
+
+      <!-- Campo "Descrição" -->
+      <div class="ui-g-12 ui-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="descricao" [(ngModel)]="nomeBusca"/>
+      </div>
+
+      <!-- Botão "Pesquisar" -->
+      <div class="ui-g-12"> <!--ui-md-6 ui-lg-2 ui-xg-1 ui-fluid"> -->
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </div>
+</form>
+
+    <!-- Tabela de Estados -->
+  <div class="ui-g">
+    <div class="ui-g-12">
+        <!--
+          -- Propriedades da tabela:
+            * Exibe 5 registros por página (tabela paginada);
+            * Responsiva (altera a exibição da tabela para linhas quando dispositivo for pequeno);
+        -->
+        <p-table [value]="estados" [paginator]="true" [rows]="5" [responsive]="true">
+
+            <!-- Cabeçalho da Tabela -->
+          <ng-template pTemplate="header">
+              <tr>
+                <!-- Referencia uma classe do arquivo style.css -->
+                <th class="col-id-header">ID</th>
+                <th align="left">Nome</th>
+                <th class="col-acoes"></th>
+              </tr>
+            </ng-template>
+
+            <!-- Corpo da Tabela -->
+            <!--
+              Cria um "loop" nos estados do array "[value]="estados"
+              * Funciona como um "for each" (JAVA), referenciando a variável "estados",
+                declarada como "let-categoria"
+            -->
+            <ng-template pTemplate="body" let-estados>
+              <tr>
+                <td class="col-id">{{estados.id}}</td>
+                <td>{{estados.nome}}</td>
+                <td class="col-acoes">
+                     <button pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top" showDelay="1000"></button>
+                  <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" showDelay="1000"></button>
+                    </td>
+              </tr>
+            </ng-template>
+
+        </p-table>
+      </div>
+  </div>
+
+  <!-- Botão "Novo Estado" -->
+  <div class="ui-g-12">
+    <a pButton label="Novo Estado"></a>
+  </div>
+</div>
